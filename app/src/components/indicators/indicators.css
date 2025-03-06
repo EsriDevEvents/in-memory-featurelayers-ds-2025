@@ -1,0 +1,269 @@
+.e-indicators {
+  min-height: calc(80vh - 50px);
+}
+
+.e-indicators__flow-item-wrapper {
+  block-size: 100%;
+}
+
+.e-indicators__flow-item-wrapper:not(.compact) calcite-flow-item {
+  margin-block-start: calc(-3rem - 1px);
+  block-size: calc(100% + 3rem + 1px);
+}
+
+.e-mobile .e-indicators__flow-item-wrapper:not(.compact) calcite-flow-item {
+  margin-block-start: 0;
+  block-size: 100%;
+}
+
+.e-indicators__flow-item-wrapper.compact calcite-flow-item {
+  block-size: 100%;
+}
+
+.e-indicators__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.e-indicators__section-header {
+  top: 0;
+  z-index: 2;
+  position: sticky;
+  padding: 1rem;
+  background-color: var(--calcite-color-background);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  --calcite-color-border-input: var(--calcite-color-border-2);
+}
+
+.e-mobile .e-indicators__section-header {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.e-indicators__section-header.bordered {
+  margin-block-end: 1rem;
+  background: var(--calcite-color-foreground-1);
+  border-bottom: 1px solid var(--calcite-color-border-3);
+}
+
+.e-mobile .e-indicators__section-header.bordered {
+  margin-block-end: 0.5rem;
+}
+
+.e-indicators__section ul {
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.e-mobile .e-indicators__section ul {
+  padding: 0 0.5rem 0.5rem;
+}
+
+.e-indicators__theme-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--calcite-color-foreground-1);
+  border: 1px solid var(--calcite-color-border-3);
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: inset 0 0 0 0 var(--calcite-color-brand);
+}
+
+.e-indicators__theme-card:hover {
+  border-color: var(--calcite-color-brand);
+  box-shadow: inset 0 0 0 1px var(--calcite-color-brand);
+}
+
+.e-mobile .e-indicators__theme-card {
+  padding: 0.75rem;
+  gap: 0.75rem;
+}
+
+.e-indicators__theme-card div {
+  flex: 1;
+}
+
+.e-indicators__theme-card h4 {
+  margin: 0;
+  font-size: var(--calcite-font-size-0);
+  font-weight: 600;
+  margin-block-end: 0.25rem;
+}
+
+.e-mobile .e-indicators__theme-card h4 {
+  font-size: var(--calcite-font-size--1);
+}
+
+.e-indicators__theme-card p {
+  margin: 0;
+  color: var(--calcite-color-text-3);
+  font-size: var(--calcite-font-size--1);
+}
+
+.e-mobile .e-indicators__theme-card p {
+  font-size: var(--calcite-font-size--2);
+}
+
+.e-indicators__theme-card calcite-icon {
+  margin-inline-end: 0.5rem;
+}
+
+.e-indicators__theme-card-color {
+  display: inline-flex;
+}
+
+.calcite-mode-dark .e-indicators__theme-card img,
+.calcite-mode-dark .e-indicators__selected-theme img {
+  filter: invert(1);
+}
+
+.e-indicators__selected-theme {
+  display: flex;
+  gap: 1rem;
+  block-size: 4.5rem;
+  align-items: center;
+  background: var(--calcite-color-foreground-1);
+  border: none;
+  border-block-end: 1px solid var(--calcite-color-border-3);
+  margin-block-end: 1rem;
+  margin: -1rem -1rem 0.5rem;
+  text-align: start;
+  transition: 0.2s;
+}
+
+.e-indicators__selected-theme calcite-action {
+  block-size: 100%;
+  border-inline-end: 1px solid var(--calcite-color-border-3);
+}
+
+.e-indicators__selected-theme div {
+  flex: 1;
+}
+
+.e-indicators__selected-theme p {
+  margin: 0;
+  font-size: var(--calcite-font-size--2);
+  color: var(--calcite-color-text-3);
+}
+
+.e-indicators__selected-theme h4 {
+  margin: 0;
+  font-size: var(--calcite-font-size-1);
+  font-weight: 600;
+}
+
+.e-indicators__sector-select {
+  --calcite-color-foreground-1: var(--calcite-color-foreground-3);
+}
+
+.e-indicators__search-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.e-indicators__search-row calcite-input {
+  flex: 1;
+}
+
+.e-indicators__search-row calcite-dropdown {
+  --calcite-dropdown-width: 320px;
+}
+
+.e-indicators__indicator-list {
+  margin: 0 1rem 1rem;
+  --calcite-font-size--2: var(--calcite-font-size--1);
+  border: 1px solid var(--calcite-color-border-3);
+}
+
+.e-mobile .e-indicators__indicator-list {
+  margin: 0 0.5rem 0.5rem;
+}
+
+.e-indicators__indicator-list calcite-list-item-group {
+  background-color: var(--calcite-color-foreground-2);
+  --calcite-color-text-2: var(--calcite-color-text-1);
+  --calcite-font-size--1: var(--calcite-font-size--2);
+}
+
+.e-indicators__indicator-list calcite-list-item calcite-radio-button {
+  pointer-events: none;
+  margin-inline-start: 0.75rem;
+  /* --calcite-color-border-input: var(--calcite-color-border-input); */
+}
+
+.e-indicators__indicator-list calcite-list-item[selected] {
+  outline: 1px solid var(--calcite-color-brand);
+  z-index: 1;
+  --calcite-color-border-2: var(--calcite-color-brand);
+  --calcite-color-foreground-1: #00837710;
+  --calcite-color-foreground-2: #00837710;
+}
+
+.e-indicators__indicator-list calcite-list-item.disabled {
+  opacity: 0.75;
+}
+
+.e-indicators__indicator-list calcite-list-item[disabled],
+.e-indicators__indicator-list calcite-list-item.disabled {
+  --calcite-color-text-1: var(--calcite-color-border-input);
+}
+
+.e-indicators__indicator-list calcite-list-item[disabled] calcite-radio-button,
+.e-indicators__indicator-list calcite-list-item.disabled calcite-radio-button {
+  --calcite-color-border-input: var(--calcite-color-border-2);
+}
+
+.e-indicators__indicator-list calcite-list-item.child {
+  --tw-shadow: 0 -1px 0 transparent;
+  margin-block-start: 0;
+}
+
+.e-indicators__indicator-list calcite-list-item.child calcite-radio-button {
+  margin-inline-start: 2.75rem;
+}
+
+.e-indicators__indicator-list calcite-list-item calcite-icon {
+  margin-inline-end: -1px;
+  margin-inline-start: 11px;
+}
+
+.e-indicators__loader {
+  margin-block-start: 2rem;
+}
+
+.e-indicators__no-results {
+  margin-block-start: 3rem;
+  text-align: center;
+  color: var(--calcite-color-text-3);
+  font-size: var(--calcite-font-size-0);
+}
+
+.e-indicators__filter-button {
+  border: 1px solid var(--calcite-color-border-input);
+  height: 2rem;
+}
+
+.e-indicators__filter-popover calcite-list {
+  max-block-size: 320px;
+  max-inline-size: 240px;
+  overflow-y: auto;
+}
+
+.e-indicators__filter-popover calcite-list-item-group {
+  background-color: var(--calcite-color-foreground-2);
+  --calcite-color-text-2: var(--calcite-color-text-1);
+  --calcite-font-size--1: var(--calcite-font-size--2);
+}
+
+.e-indicators__filters-footer {
+  padding: 0.5rem;
+  border-block-start: 1px solid var(--calcite-color-border-3);
+}
