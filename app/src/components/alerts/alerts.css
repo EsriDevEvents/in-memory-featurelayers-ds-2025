@@ -1,7 +1,0 @@
-.e-alert {
-  --calcite-alert-width: 480px;
-}
-
-.e-mobile .e-alert {
-  --calcite-alert-width: calc(100vw - 2rem);
-}
