@@ -1,12 +1,11 @@
 // FRAMEWORK
-import React from "react";
 import { createPortal } from "react-dom";
 
 // CALCITE COMPONENTS
 import { CalciteAlert } from "@esri/calcite-components-react";
 
 // CONTEXT
-import { useAppContext } from "../../context";
+import { useAppContext } from "@/context/app-context";
 
 // STYLES
 import "./alerts.css";
@@ -34,10 +33,10 @@ const Alerts = () => {
             key={alert.id}
             placement="bottom"
             className="e-alert"
-            label={alert.message}
+            label={alert.message || ""}
             autoClose={autoClose}
             autoCloseDuration="fast"
-            icon={icons[alert.type]}
+            icon={icons[alert.type] || "information"}
             kind={alert.type === "error" ? "danger" : alert.type}
             onCalciteAlertClose={() => dispatchAlert(alert)}
           >

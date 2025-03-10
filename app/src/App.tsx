@@ -15,7 +15,6 @@ import {
   CalciteButton,
   CalciteDropdownGroup,
   CalciteDropdownItem,
-  CalciteIcon,
 } from "@esri/calcite-components-react";
 
 // MAP COMPONENTS
@@ -24,7 +23,6 @@ import { ArcgisLegend } from "@arcgis/map-components-react";
 // COMPONENTS
 import Map from "@/components/map";
 import Indicators from "@/components/indicators";
-import Publish from "./components/publish";
 
 const App = () => {
   // TRANSLATION
@@ -35,16 +33,11 @@ const App = () => {
 
   // RENDER
 
-  // return <Publish />;
-
   return (
     <CalciteShell>
       {/* -- Header -- */}
       <div className="e-header" slot="header">
-        <span>
-          <CalciteIcon icon="layers" scale="m" />
-          {t("title")}
-        </span>
+        {t("title")}
         <CalciteDropdown placement="bottom-end">
           <CalciteButton slot="trigger" kind="neutral" icon-end="chevron-down">
             {t(i18n.language)}
