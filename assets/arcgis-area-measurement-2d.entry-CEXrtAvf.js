@@ -1,0 +1,5 @@
+import{aW as s,aX as e,aY as i}from"./index-Dv-JqQDv.js";import{l as r}from"./index-80b25649-68xUsn4R.js";import{u as a}from"./chunk-PVEVZB4O-9f86844d-Ct3O5R7X.js";import{u as o}from"./index-22d8619e-w6z8gV_r.js";import{m as n}from"./useWidget-61f344ef-DGmpP8qW.js";import"./component-utils-6b686246-0G4ejcxE.js";/*!
+ * All material copyright Esri, All Rights Reserved, unless otherwise specified.
+ * See https://js.arcgis.com/4.30/esri/copyright.txt for details.
+ * v4.30.4
+ */const h="",g=h,m=n(r),d=class{constructor(t){s(this,t),this.arcgisReady=e(this,"arcgisReady",7),this.arcgisPropertyChange=e(this,"arcgisPropertyChange",7),this.manager=o(this),this.widget=m(this),this.viewModel=this.widget.viewModel,this.arcgisPropertyChange=a()("state"),this.autoDestroyDisabled=!1,this.referenceElement=void 0,this.label=this.widget.label,this.icon=this.widget.icon,this.unit=this.widget.unit,this.unitOptions=this.widget.unitOptions,this.position="bottom-left",this.state=this.viewModel.state}async destroy(){await this.manager.destroy()}get el(){return i(this)}};d.style=g;export{d as arcgis_area_measurement_2d};

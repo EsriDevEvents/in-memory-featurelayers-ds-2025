@@ -1,0 +1,1 @@
+import{bF as i,fv as x,x as m}from"./index-Dv-JqQDv.js";import{d as r}from"./queryTopFeatures-QrDcMVMo.js";async function c(n,o,e){const s=i(n),a=await r(s,x.from(o),{...e}),t=a.data.extent;return!t||isNaN(t.xmin)||isNaN(t.ymin)||isNaN(t.xmax)||isNaN(t.ymax)?{count:a.data.count,extent:null}:{count:a.data.count,extent:m.fromJSON(t)}}export{c as executeForTopExtents};

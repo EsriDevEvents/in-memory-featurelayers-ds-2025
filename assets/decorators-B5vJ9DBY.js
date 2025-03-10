@@ -1,0 +1,1 @@
+import{y as r}from"./index-Dv-JqQDv.js";import{e0 as p,h3 as u,e6 as f,h5 as c,eC as l,bm as m,h4 as h,P as y,eu as O}from"./index-Dv-JqQDv.js";function t(a,s){const e=s?{...s,source:a}:a;return r({aliasOf:e})}export{t as aliasOf,p as cast,u as ensureRange,f as enumeration,c as finalizeClass,r as property,l as propertyJSONMeta,m as reader,h as shared,y as subclass,O as writer};

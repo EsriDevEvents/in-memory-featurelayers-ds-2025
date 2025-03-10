@@ -1,0 +1,1 @@
+import{bF as f,bG as d,bH as m,V as p,U as v}from"./index-Dv-JqQDv.js";async function y(i,s,a){const e=f(i),r=d(e.query,{query:m({f:"json"}),...a});s.startsWith("{")&&(s=s.slice(1,-1));const t=p(e.path,"versions",s),{data:o}=await v(t,r),{versionName:n,versionGuid:u,...c}=o;return{...c,versionIdentifier:{name:n,guid:u}}}export{y as getVersion};
