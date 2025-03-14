@@ -23,7 +23,7 @@ export type AppContextType = {
   setMapView: React.Dispatch<__esri.MapView>;
   countiesLayer?: FeatureLayer;
   indicatorsLayer?: FeatureLayer;
-  dataLayer?: FeatureLayer;
+  valuesLayer?: FeatureLayer;
   inMemoryLayer?: FeatureLayer;
   getFeatures: (
     layer: __esri.FeatureLayer,
@@ -52,7 +52,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [mapView, setMapView] = useState<__esri.MapView>();
   const [countiesLayer, setCountiesLayer] = useState<FeatureLayer>();
   const [indicatorsLayer, setIndicatorsLayer] = useState<FeatureLayer>();
-  const [dataLayer, setDataLayer] = useState<FeatureLayer>();
+  const [valuesLayer, setValuesLayer] = useState<FeatureLayer>();
   const [inMemoryLayer, setInMemoryLayer] = useState<FeatureLayer>();
   const [indicator, setIndicator] = useState<__esri.Graphic>();
 
@@ -98,25 +98,26 @@ export const AppContextProvider = ({ children }: Props) => {
    */
   useEffect(() => {
     (async () => {
+      // Load layers from services
       const countiesLayer = new FeatureLayer({
         url: `${config.serviceUrl}/${config.countiesId}`,
       });
       const indicatorsLayer = new FeatureLayer({
         url: `${config.serviceUrl}/${config.indicatorsId}`,
       });
-      const dataLayer = new FeatureLayer({
-        url: `${config.serviceUrl}/${config.dataId}`,
+      const valuesLayer = new FeatureLayer({
+        url: `${config.serviceUrl}/${config.valuesId}`,
       });
-
       setCountiesLayer(countiesLayer);
       setIndicatorsLayer(indicatorsLayer);
-      setDataLayer(dataLayer);
+      setValuesLayer(valuesLayer);
 
+      // Create in-memory layer from counties
       const features = await getFeatures(countiesLayer);
       const inMemoryLayer = new FeatureLayer({
         title: "In memory layer",
-        visible: false,
-        id: "in-memory",
+        source: features,
+        visible: true,
         objectIdField: "FIPS",
         geometryType: "polygon",
         fields: [
@@ -124,7 +125,6 @@ export const AppContextProvider = ({ children }: Props) => {
           { name: "YEAR", type: "integer" },
           { name: "VALUE", type: "double" },
         ],
-        source: features,
       });
 
       await inMemoryLayer.load();
@@ -151,7 +151,7 @@ export const AppContextProvider = ({ children }: Props) => {
     setMapView,
     countiesLayer,
     indicatorsLayer,
-    dataLayer,
+    valuesLayer,
     inMemoryLayer,
     getFeatures,
   };

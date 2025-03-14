@@ -44,7 +44,7 @@ function Map() {
     countiesLayer,
     indicator,
     getFeatures,
-    dataLayer,
+    valuesLayer,
   } = useAppContext();
 
   // LOCAL STATE
@@ -77,18 +77,19 @@ function Map() {
    * Update the layer values
    */
   const updateLayer = async () => {
-    if (!indicator || !dataLayer || !inMemoryLayer) return;
+    if (!indicator || !valuesLayer || !inMemoryLayer) return;
     setDataLoading(true);
 
+    // Define the where clause
     let where = `INDICATOR = '${indicator.attributes["INDICATOR"]}'`;
     if (state) where += ` AND STATE_FIPS = '${state.attributes["STATE_FIPS"]}'`;
 
-    // Set the title
+    // Set the layer title
     inMemoryLayer.title =
       indicator.attributes[i18n.language === "es" ? "NAME_ES" : "NAME_EN"];
 
     // Get available years
-    const years = await getFeatures(dataLayer, {
+    const years = await getFeatures(valuesLayer, {
       where: where,
       outFields: ["YEAR"],
       returnDistinctValues: true,
@@ -97,29 +98,26 @@ function Map() {
     const avbYears = years.map((f) => f.attributes["YEAR"]);
     setYears(avbYears);
     if (!avbYears.includes(year)) setYear(avbYears[0]);
-    console.log({ avbYears });
 
-    // Get data for selected indicator and year
-    const data = await getFeatures(dataLayer, {
+    // Get values for selected indicator and year
+    const values = await getFeatures(valuesLayer, {
       where: where + ` AND YEAR = ${year}`,
     } as __esri.Query);
-    console.log({ data });
 
     // Update our in-memory layer
-    const updateRes = await inMemoryLayer.applyEdits({
-      updateFeatures: data.map((feat) => {
-        let value = feat.attributes["VALUE"];
+    await inMemoryLayer.applyEdits({
+      updateFeatures: values.map((feature) => {
+        let value = feature.attributes["VALUE"];
         if (value === -99) value = 0;
         return new Graphic({
           attributes: {
-            FIPS: feat.attributes["FIPS"],
-            YEAR: feat.attributes["YEAR"],
+            FIPS: feature.attributes["FIPS"],
+            YEAR: feature.attributes["YEAR"],
             VALUE: value,
           },
         });
       }),
     });
-    console.log({ updateRes });
 
     // Create a renderer
     const colorParams = {
@@ -132,7 +130,6 @@ function Map() {
     const { renderer } =
       await colorRendererCreator.createContinuousRenderer(colorParams);
     inMemoryLayer.renderer = renderer;
-    console.log({ renderer });
 
     setDataLoading(false);
   };
@@ -145,7 +142,14 @@ function Map() {
     if (!mapReady || !inMemoryLayer) return;
     console.log("Updating layer");
     updateLayer();
-  }, [mapReady, inMemoryLayer, indicator?.attributes["OBJECTID"], year, state]);
+  }, [
+    mapReady,
+    inMemoryLayer,
+    indicator?.attributes["OBJECTID"],
+    year,
+    state,
+    i18n.language,
+  ]);
 
   /**
    * When the in memory layer is ready

@@ -57,6 +57,7 @@ const App = () => {
       </div>
 
       <CalciteShellPanel position="start" slot="panel-start" widthScale="m">
+        {/* -- Toolbar -- */}
         <CalciteActionBar slot="action-bar" expanded>
           <CalciteAction
             text={t("indicators")}
@@ -72,11 +73,14 @@ const App = () => {
           />
         </CalciteActionBar>
 
+        {/* -- Panel -- */}
         <CalcitePanel heading={t(panel)}>
           {panel === "indicators" && <Indicators />}
           {panel === "legend" && <ArcgisLegend referenceElement="#map" />}
         </CalcitePanel>
       </CalciteShellPanel>
+
+      {/* -- Map -- */}
       <Map />
     </CalciteShell>
   );
